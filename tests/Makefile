@@ -1,6 +1,6 @@
 #!/bin/makefile
 
-SRC2=../CExcept.c
+SRC2=../exsee.c
 OFILES2=$(SRC2:.o=.c)
 SRC=$(wildcard *.c)
 OFILES=$(SRC:.o=.c)

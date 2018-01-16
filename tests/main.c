@@ -1,4 +1,4 @@
-#include "../CExcept.h"
+#include "../exsee.h"
 #include <stdio.h>
 
 typedef struct myexcept{
@@ -12,7 +12,7 @@ void * ctor_me(void * e, va_list vl){
     return e;
 }
 
-NEW_EXCEPTION_CEXCEPT(MyExcept,"Personnal exception", sizeof(myexcept_t),ctor_me);
+NEW_EXCEPTION_EXSEE(MyExcept,"Personnal exception", sizeof(myexcept_t),ctor_me);
 
 int main(){
     void * a;
@@ -37,11 +37,11 @@ int main(){
 
     TRY{
 	puts("MyExcept");
-	THROW(new_cexcept(MyExcept, 1));
+	THROW(new_exsee(MyExcept, 1));
 	puts("failed");
     }CATCH(MyExcept, a){
 	puts(WHAT(a));
-	delete_cexcept(a);
+	delete_exsee(a);
     }
 
     TRY{
@@ -52,7 +52,7 @@ int main(){
 	puts("succeeded");
     }
 
-    THROW(new_cexcept(MyExcept, 1));
+    THROW(new_exsee(MyExcept, 1));
     
     return 0;
 }
