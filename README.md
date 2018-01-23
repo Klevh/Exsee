@@ -41,4 +41,36 @@ int main(){
 }
 ```
 ## How to create a self-made exception
-Explaination coming soon ... For now, it is shown in the `tests` folder, in `main.c`.
+To explain how to create a self-made exception, we will create one containing an `int` attribute.  
+First, we need to create our structure that will _inerit_ from `exception_t` like below :
+```c
+typedef struct myexcept{
+    exception_t except;
+    int i;
+}myexcept_t;
+```
+With this class, we will now _instanciate_ the `except` attribute of our class (we do not really instanciate, we rather define how each instance will be instanciated). For that, we will do like below :
+```c
+// In the .c file
+NEW_EXCEPTION_EXSEE(MyExcept, // Name of the exception (name to use with new_exsee, delete_exsee and catch)
+                    "Personnal exception", // WHAT message of the exception
+		    sizeof(myexcept_t), // memory size of the exception (optional if it is the same size as exception_t)
+		    ctor_me, // constructor of type void*(*)(void*,va_list) (optional)
+		    NULL); // destructor of type void*(*)(void)
+
+// In the .h file
+NEW EXCEPTION_EXSEE_H(MyExcept);
+```
+If we want to instanciate and delete an instance of our newly made exception (well, there is a missing function but it is described later), we can do like that :
+```c
+void * except = new_exsee(MyExcept, 1); // can be of type myexcept_t *
+delete_exsee(except);
+```
+The last step (that will appeare before in your code) is the implementation of a constructor. It is really simple and can be done just like that :
+```c
+void * ctor_me(void * e, va_list vl){
+    ((myexcept_t *)e)->i = va_arg(vl, int);
+
+    return e;
+}
+```
