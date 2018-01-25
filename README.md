@@ -56,10 +56,10 @@ NEW_EXCEPTION_EXSEE(MyExcept, // Name of the exception (name to use with new_exs
                     "Personnal exception", // WHAT message of the exception
 		    sizeof(myexcept_t), // memory size of the exception (optional if it is the same size as exception_t)
 		    ctor_me, // constructor of type void*(*)(void*,va_list) (optional)
-		    NULL); // destructor of type void*(*)(void)
+		    NULL); // destructor of type void*(*)(void) (optional)
 
 // In the .h file
-NEW EXCEPTION_EXSEE_H(MyExcept);
+NEW_EXCEPTION_EXSEE_H(MyExcept);
 ```
 If we want to instanciate and delete an instance of our newly made exception (well, there is a missing function but it is described later), we can do like that :
 ```c
