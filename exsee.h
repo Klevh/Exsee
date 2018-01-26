@@ -30,7 +30,7 @@
 /**
  * @brief Beginning of the TRY/CATCH/FINALLY blocks
  */
-#define TRY if((++data_exsee.in_throw, !setjmp(data_exsee.env)))
+#define TRY if((set_exsee() , 1) && (++data_exsee.in_throw, !setjmp(data_exsee.env)))
 
 /**
  * @brief Beginning of a catch block
@@ -104,32 +104,5 @@ void * new_exsee(const exception_t type, ...);
  * @param exception : instance to be freed
  */
 void * delete_exsee(void * exception);
-/* ------------------------------------------ */
-
-/* ------------ MAIN REDIRECTION ------------ */
-#ifndef NO_MAIN_EXSEE
-#ifdef MAIN_ARGS_EXSEE
-#undef MAIN_ARGS_EXSEE
-#define MAIN_ARGS_EXSEE int argc, char ** argv
-#define MAIN_CALL_EXSEE(argc, argv) main_exsee((argc),(argv))
-#else
-#define MAIN_ARGS_EXSEE
-#define MAIN_CALL_EXSEE(argc,argv) main_exsee()
-#endif
-
-int main_exsee(MAIN_ARGS_EXSEE);
-int main(MAIN_ARGS_EXSEE){
-    int ret;
-    set_exsee();
-    ret = MAIN_CALL_EXSEE(argc, argv);
-    if(data_exsee.exception){
-        puts(WHAT(data_exsee.exception));
-	free(data_exsee.exception);
-        return ((exception_t*)data_exsee.exception)->id;
-    }
-    return ret;
-}
-#define main main_exsee
-#endif
 /* ------------------------------------------ */
 #endif
