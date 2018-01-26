@@ -119,8 +119,15 @@ void * delete_exsee(void * exception);
 
 int main_exsee(MAIN_ARGS_EXSEE);
 int main(MAIN_ARGS_EXSEE){
+    int ret;
     set_exsee();
-    return MAIN_CALL_EXSEE(argc, argv);
+    ret = MAIN_CALL_EXSEE(argc, argv);
+    if(data_exsee.exception){
+        puts(WHAT(data_exsee.exception));
+	free(data_exsee.exception);
+        return ((exception_t*)data_exsee.exception)->id;
+    }
+    return ret;
 }
 #define main main_exsee
 #endif
