@@ -55,12 +55,16 @@ void on_signal_exsee(int sig){
 }
 
 void set_exsee(){
-    signal(SIGABRT, &on_signal_exsee);
-    signal(SIGFPE, &on_signal_exsee);
-    signal(SIGILL, &on_signal_exsee);
-    signal(SIGINT, &on_signal_exsee);
-    signal(SIGSEGV, &on_signal_exsee);
-    signal(SIGTERM, &on_signal_exsee);
+    static int init = 1;
+    if(init){
+        signal(SIGABRT, &on_signal_exsee);
+        signal(SIGFPE, &on_signal_exsee);
+        signal(SIGILL, &on_signal_exsee);
+        signal(SIGINT, &on_signal_exsee);
+        signal(SIGSEGV, &on_signal_exsee);
+        signal(SIGTERM, &on_signal_exsee);
+        init = 0;
+    }
 }
 
 void * new_exsee(const exception_t type, ...){
