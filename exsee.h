@@ -25,7 +25,7 @@
  * @brief Header part of NEW_EXCEPTION_EXSEE if not header only
  * @param name : type to be defined
  */
-#define NEW_EXCEPTION_EXSEE_H(name) extern const exception_t name;
+#define NEW_EXCEPTION_EXSEE_H(name) extern const exception_t name
 
 /**
  * @brief Beginning of the TRY/CATCH/FINALLY blocks
