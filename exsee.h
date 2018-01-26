@@ -19,7 +19,7 @@
  * @param constructor : function to be called when instanciating using new_exsee (of type void *(*)(void *,va_list))
  * @param destructor : function to be called when freed using delete_exsee (of type void *(*)(void *))
  */
-#define NEW_EXCEPTION_EXSEE(name, ...) const exception_t name = {__COUNTER__, ##__VA_ARGS__}
+#define NEW_EXCEPTION_EXSEE(name, args...) const exception_t name = {__COUNTER__, ##args}
 
 /**
  * @brief Header part of NEW_EXCEPTION_EXSEE if not header only
