@@ -4,13 +4,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-NEW_EXCEPTION_EXSEE(Exception, "Exception");
-NEW_EXCEPTION_EXSEE(AbortException, "Abort Exception");
-NEW_EXCEPTION_EXSEE(FloatingPointException, "Floating-point Exception");
-NEW_EXCEPTION_EXSEE(IllegalInstruction, "Illegal Instruction");
-NEW_EXCEPTION_EXSEE(SignalInterupted, "Signal Interupted");
-NEW_EXCEPTION_EXSEE(SegmentationFault, "Segmentation Fault");
-NEW_EXCEPTION_EXSEE(SignalTermination, "Signal Termination");
+NEW_EXCEPTION_EXSEE(Exception, "Exception", 0, NULL, NULL);
+NEW_EXCEPTION_EXSEE(AbortException, "Abort Exception", 0, NULL, NULL);
+NEW_EXCEPTION_EXSEE(FloatingPointException, "Floating-point Exception", 0, NULL, NULL);
+NEW_EXCEPTION_EXSEE(IllegalInstruction, "Illegal Instruction", 0, NULL, NULL);
+NEW_EXCEPTION_EXSEE(SignalInterupted, "Signal Interupted", 0, NULL, NULL);
+NEW_EXCEPTION_EXSEE(SegmentationFault, "Segmentation Fault", 0, NULL, NULL);
+NEW_EXCEPTION_EXSEE(SignalTermination, "Signal Termination", 0, NULL, NULL);
 
 struct exsee_data data_exsee = {0};
 

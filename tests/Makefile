@@ -1,17 +1,17 @@
 #!/bin/makefile
 
-SRC2=../exsee.c
-OFILES2=$(SRC2:.o=.c)
 SRC=$(wildcard *.c)
-OFILES=$(SRC:.o=.c)
+OFILES=$(SRC:.c=.o)
 EXEC=a.out
 LDFLAGS=-g
-CFLAGS=-Wall -Wextra -ansi -pedantic
+CFLAGS=-Wall -Wextra -ansi -pedantic -std=c90
 CC=gcc
 CLEAN=*.o *~
+
 all:$(EXEC)
-$(EXEC):$(OFILES) $(OFILES2)
-	$(CC) $^ -o $@ $(LDFLAGS)
+$(EXEC):$(OFILES) ../exsee.o
+	$(CC) $(OFILES) exsee.o -o $@ $(LDFLAGS)
+
 ../%.o:../%.c
 	$(CC) -c $< $(CFLAGS)
 %.o:%.c

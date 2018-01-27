@@ -12,7 +12,7 @@ void * ctor_me(void * e, va_list vl){
     return e;
 }
 
-NEW_EXCEPTION_EXSEE(MyExcept,"Personnal exception", sizeof(myexcept_t),ctor_me);
+NEW_EXCEPTION_EXSEE(MyExcept,"Personnal exception", sizeof(myexcept_t),ctor_me,NULL);
 
 int main(){
     void * a;
