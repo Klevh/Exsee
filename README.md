@@ -1,5 +1,5 @@
 # Exsee
-A C version of TRY / CATCH / FINALLY blocks. Compatible with C89.
+A C version of TRY / CATCH / FINALLY blocks. Compatible with GNU C89.
 ## Introduction
 With this tool, you will be able to create self made exceptions and catch them to avoid your program to crash.  
 Provided exceptions are :
